@@ -1,0 +1,7 @@
+# Project exclude paths
+/.gradle/
+/bungee/build/
+/bungee/bungee-api/build/
+/bungee/bungee-api/build/classes/kotlin/main/
+
+dist

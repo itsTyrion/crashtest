@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+group = 'de.itsTyrion'
+version rootProject.version
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'PaperMC'
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+}
+
+dependencies {
+    compileOnly 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk9:1.6.+'
+
+//    implementation(project(':common')) { exclude(group: 'net.kyori', module: '*') }
+
+    compileOnly 'io.github.waterfallmc:waterfall-api:1.19-R0.1-SNAPSHOT'
+
+    implementation('net.kyori:adventure-platform-bungeecord:4.3.+')
+    implementation('net.kyori:adventure-text-minimessage:4.13.0')
+
+}
+
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = sourceCompatibility
+
+compileKotlin {
+    kotlinOptions.jvmTarget = sourceCompatibility.toString()
+}
+
+archivesBaseName = rootProject.name + '-bungee-api.jar'
+
+jar {
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
+    manifest { attributes 'Implementation-Version': project.version.toString() }
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    archiveFileName.set archivesBaseName
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('bungee.yml') { expand props }
+}

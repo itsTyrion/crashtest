@@ -1,0 +1,6 @@
+name: 'Matrix-API'
+version: '${version}'
+main: de.itsTyrion.crashtest.bungee.BungeeAPIMain
+author: 'itsTyrion'
+depends: [ 'KotlinLoader' ]
+description: 'server system api'

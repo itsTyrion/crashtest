@@ -1,0 +1,38 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.10'
+}
+
+group = 'de.itsTyrion'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = sourceCompatibility
+
+compileKotlin {
+    kotlinOptions.jvmTarget = targetCompatibility.toString()
+}
+
+
+subprojects { module ->
+    task buildArtifacts {
+        doLast {
+            def DIST_DIR = "$rootDir/dist"
+            def SRC_DIR = "$buildDir/libs"
+
+            ant.mkdir(dir: DIST_DIR)
+            ant.copy(todir: DIST_DIR) {
+                fileset(dir: SRC_DIR, includes: module.archivesBaseName)
+            }
+        }
+    }
+    module.tasks.withType(Jar) { jarTask ->
+        buildArtifacts.dependsOn jarTask
+    }
+}

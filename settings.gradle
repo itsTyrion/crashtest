@@ -1,0 +1,9 @@
+
+rootProject.name = 'crashtest'
+//include 'common'
+include 'bungee'
+
+//include 'bukkit:bukkit-api'
+//findProject(':bukkit:bukkit-api').name = 'bukkit-api'
+include 'bungee:bungee-api'
+findProject(':bungee:bungee-api')?.name = 'bungee-api'
