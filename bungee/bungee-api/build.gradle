@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
-    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk9:1.6.+'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-jdk9:1.6.+'
 
 //    implementation(project(':common')) { exclude(group: 'net.kyori', module: '*') }
 

@@ -2,5 +2,5 @@ name: 'Matrix'
 version: '${version}'
 main: de.itsTyrion.crashtest.bungee.CrashtestMain
 author: 'itsTyrion'
-depends: [ 'KotlinLoader', 'Matrix-API' ]
+depends: [ 'Matrix-API' ]
 description: 'server system'
